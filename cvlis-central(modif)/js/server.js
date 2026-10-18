@@ -6,9 +6,11 @@ const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const path = require("path");
 
+
 const app = express();
 app.use(express.json({ limit: "20kb" }));
 app.use(cookieParser());
+app.set("trust proxy", 1);
 
 const pool = mysql.createPool({
   host: process.env.DB_HOST || "localhost",
@@ -207,10 +209,28 @@ app.delete("/api/events/:id", requireAdmin, wrap(async (req, res) => {
 
 /* ---------- Static website ---------- */
 // server.js lives in js/, but the site files (Home.html, css/, js/) are in the parent folder.
+// Mga piling file lang ang ihahain, para hindi mabasa ng publiko ang server.js, database.sql, package.json at iba pa.
 const PUBLIC = path.join(__dirname, "..");
-app.use(express.static(PUBLIC));
-app.get("/", (req, res) => res.sendFile(path.join(PUBLIC, "Home.html")));
 
+// Kapag nagdagdag ka ng bagong .js file para sa browser, idagdag din ang pangalan dito.
+const PUBLIC_JS = new Set([
+  "admin.js", "auth.js", "data.js", "main.js",
+  "nav.js", "poll.js", "render.js", "request.js"
+]);
+
+app.use("/css", express.static(path.join(PUBLIC, "css")));
+app.use("/images", express.static(path.join(PUBLIC, "images")));
+app.use("/img", express.static(path.join(PUBLIC, "img")));
+app.use("/assets", express.static(path.join(PUBLIC, "assets")));
+app.use("/js", (req, res, next) => {
+  let file;
+  try { file = decodeURIComponent(req.path.slice(1)).toLowerCase(); }
+  catch (e) { return res.status(400).end(); }
+  if (!PUBLIC_JS.has(file)) return res.status(404).end();
+  next();
+}, express.static(path.join(PUBLIC, "js")));
+
+app.get(["/", "/Home.html"], (req, res) => res.sendFile(path.join(PUBLIC, "Home.html")));
 /* ---------- Errors ---------- */
 app.use((err, req, res, next) => {
   console.error(err);
