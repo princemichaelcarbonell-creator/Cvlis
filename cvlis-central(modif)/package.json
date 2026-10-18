@@ -2,10 +2,10 @@
   "name": "cvlis-central",
   "version": "1.0.0",
   "private": true,
-  "main": "server.js",
+  "main": "js/server.js",
   "scripts": {
-    "start": "node server.js",
-    "seed-admin": "node seed-admin.js"
+    "start": "node js/server.js",
+    "seed-admin": "node js/seed-admin.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
