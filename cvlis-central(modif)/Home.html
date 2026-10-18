@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>CVLIS Central</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header>
+ <button class="burger" id="burger" aria-label="Menu"><i></i><i></i><i></i></button>
+ <div class="logo">CV</div>
+ <div><h1>CVLIS Central</h1><div class="mono">Camp Vicente Lim Int'l School</div></div>
+ <div class="auth"><span id="who" class="msg" style="color:#c3cce0"></span><button class="out" id="loginBtn">Log in</button><button id="signBtn">Sign up</button></div>
+</header>
+<div id="ov"></div>
+<nav id="nav"><small class="mono">MENU</small>
+ <a data-v="home">Home</a><a data-v="about">School Info</a><a data-v="news">Announcements</a><a data-v="enroll">Enrollment</a><a data-v="events">Events</a><a data-v="staff">Staff Directory</a><a data-v="request">Document Requests</a></nav>
+
+<div id="home" class="view on">
+ <div class="hero"><div class="wrap">
+  <div><span class="badge">Official website — now online</span>
+   <h2>One address for everything <em>CVLIS.</em></h2>
+   <p>Announcements, the enrollment guide, the school calendar, staff contacts, and document requests — in one place, so no one has to find out at the gate.</p>
+   <div class="btns"><button onclick="go('request')">Request a document</button><button class="out" onclick="go('news')">See announcements</button></div></div>
+  <div class="slip"><div class="mono">REQUEST SLIP NO. 0247</div><h3>Good Moral Certificate</h3>
+   <div class="r"><span>Requested by</span><b>Grade 10 – Mabini</b></div><div class="r"><span>Date filed</span><b>July 24, 2026</b></div><div class="r"><span>Status</span><span class="ok">Ready for pickup</span></div></div>
+ </div></div>
+ <section class="s"><div class="wrap"><div class="row"><div><div class="eyebrow mono">01 — Announcements</div><h2>What's happening at CVLIS</h2></div><a onclick="go('news')">View all announcements</a></div><div class="annList" data-n="3"></div></div></section>
+ <section class="s" style="padding-top:0"><div class="wrap"><div class="eyebrow mono">02 — Enrollment &amp; Events</div><h2>Getting in, and staying on schedule</h2>
+  <div class="two"><div class="dark enr"></div><div class="card"><h3 style="margin-bottom:10px;font-size:1.4rem">Upcoming on the calendar</h3><div class="evList"></div></div></div></div></section>
+ <section class="s" style="padding-top:0"><div class="wrap two">
+  <div class="card"><div class="eyebrow mono">03 — Quick poll</div><h3 style="margin:4px 0 12px;font-size:1.4rem">Have your say</h3><div id="poll"></div></div>
+  <div class="card"><div class="eyebrow mono">Log in</div><h3 style="margin:4px 0 8px;font-size:1.4rem">Your account</h3><p style="color:var(--mut)">Sign up to track your document requests and get school updates.</p><button onclick="openA('sign')">Create account</button></div></div></section>
+ <section class="s" style="padding-top:0"><div class="wrap"><div class="band"><div><div class="eyebrow mono" style="color:var(--gold)">04 — Document requests</div><h2>File it online. Skip the line.</h2><p>Request a certificate or record and track it from submission to pickup — no repeat trips to the registrar's window just to ask "is it ready yet."</p><button onclick="go('request')">Start a request</button></div><div class="docs"></div></div></div></section>
+</div>
+
+<div id="about" class="view"><section class="s"><div class="wrap"><div class="eyebrow mono">About — who we are</div><h2>The school behind the site</h2>
+ <div class="two"><div class="dark"><h3 style="font-size:1.6rem;margin-bottom:10px">About CVLIS</h3><p>Camp Vicente Lim Integrated School began in 1952 as a school for enlisted personnel at Camp Vicente Lim in Barangay Mayapa, Calamba, operating under the Armed Forces of the Philippines before it was turned over to the Department of Education and renamed Camp Vicente Lim National High School.</p><p>With the rollout of the K to 12 program, the school opened its Senior High School offering in 2016, and in 2017 it was renamed Camp Vicente Lim Integrated School to reflect its Junior and Senior High programs under one roof. Today it serves the Limian community as a public secondary school in Calamba City.</p></div>
+ <div class="card"><h3 style="font-size:1.4rem;margin-bottom:10px">DepEd mandate</h3><div class="eyebrow mono">Vision</div><p style="color:var(--mut);font-size:.92rem">We dream of Filipinos who passionately love their country and whose values and competencies enable them to realize their full potential and contribute meaningfully to building the nation.</p><div class="eyebrow mono">Mission</div><p style="color:var(--mut);font-size:.92rem">To protect and promote the right of every Filipino to quality, equitable, culture-based, and complete basic education, in a child-friendly, gender-sensitive, safe, and motivating environment.</p><div class="eyebrow mono">Core values</div><div class="chips" style="margin-top:6px"><span class="tag">Maka-Diyos</span><span class="tag">Makatao</span><span class="tag">Makakalikasan</span><span class="tag">Makabansa</span></div></div></div></div></section></div>
+
+<div id="news" class="view"><section class="s"><div class="wrap"><div class="eyebrow mono">Announcements</div><h2>What's happening at CVLIS</h2><div class="annList" data-n="9"></div></div></section></div>
+
+<!-- ===== ENROLLMENT VIEW: STEP-BY-STEP PROCEDURE (walk-in, no online enrollment) ===== -->
+<div id="enroll" class="view">
+  <section class="s">
+    <div class="wrap" style="max-width:820px">
+      <div class="eyebrow mono">Enrollment</div>
+      <h2>How to enroll at CVLIS</h2>
+      <div id="enrollPage"></div>
+    </div>
+  </section>
+</div>
+
+<div id="events" class="view"><section class="s"><div class="wrap"><div class="eyebrow mono">Events</div><h2>School calendar</h2><div class="card"><div class="evList"></div></div></div></section></div>
+<div id="staff" class="view"><section class="s"><div class="wrap"><div class="eyebrow mono">Staff directory</div><h2>Who to contact</h2><div class="staff" id="staffList"></div></div></section></div>
+
+<div id="request" class="view"><section class="s"><div class="wrap" style="max-width:640px"><div class="eyebrow mono">Document requests</div><h2>Request a document</h2><div class="card">
+ <label>Full name<input id="rName"></label><label>LRN<input id="rLrn"></label><label>Your email<input id="rEmail" type="email"></label>
+ <label>Document<select id="rDoc"></select></label><label>Purpose<textarea id="rPurpose" rows="3"></textarea></label>
+ <p><button id="sendReq">Send request via email</button></p><p class="msg">This opens your email app with the request filled in, addressed to the registrar.</p></div></div></section></div>
+
+<!-- ===== ADMIN PANEL ===== -->
+<div id="admin" class="view">
+  <section class="s">
+    <div class="wrap">
+      <div class="eyebrow mono">Admin Panel</div>
+      <h2>School Head Dashboard</h2>
+
+      <div id="adminPanel">
+        <div class="admin-bar">
+          <div><b id="adminWho"></b></div>
+          <button class="out" style="color:var(--ink)" onclick="adminLogout()">Log out</button>
+        </div>
+
+        <div class="admin-tabs">
+          <button class="admin-tab on" data-tab="ann">Announcements</button>
+          <button class="admin-tab" data-tab="ev">Events</button>
+        </div>
+
+        <div class="admin-tab-content on" id="tab-ann">
+          <div class="card">
+            <h3 style="margin-bottom:14px">Add / Edit Announcement</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Month (3 letters)</label>
+                <input id="annMonth" maxlength="3" placeholder="AUG">
+              </div>
+              <div class="form-group">
+                <label>Day</label>
+                <input id="annDay" maxlength="2" placeholder="15">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Title</label>
+              <input id="annTitle" placeholder="Announcement title">
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <textarea id="annText" rows="2" placeholder="Short description"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Tag</label>
+              <input id="annTag" placeholder="General / Academics / Registrar">
+            </div>
+            <div class="form-actions">
+              <button class="btn-secondary" onclick="clearAnnForm()">Clear</button>
+              <button id="saveAnnBtn">Save Announcement</button>
+            </div>
+          </div>
+          <div class="card" style="margin-top:20px">
+            <h3 style="margin-bottom:14px">Existing Announcements</h3>
+            <div id="annAdminList"></div>
+          </div>
+        </div>
+
+        <div class="admin-tab-content" id="tab-ev">
+          <div class="card">
+            <h3 style="margin-bottom:14px">Add / Edit Event</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Month (3 letters)</label>
+                <input id="evMonth" maxlength="3" placeholder="SEP">
+              </div>
+              <div class="form-group">
+                <label>Day</label>
+                <input id="evDay" maxlength="2" placeholder="05">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Title</label>
+              <input id="evTitle" placeholder="Event title">
+            </div>
+            <div class="form-group">
+              <label>Place / Venue</label>
+              <input id="evPlace" placeholder="Covered court">
+            </div>
+            <div class="form-actions">
+              <button class="btn-secondary" onclick="clearEvForm()">Clear</button>
+              <button id="saveEvBtn">Save Event</button>
+            </div>
+          </div>
+          <div class="card" style="margin-top:20px">
+            <h3 style="margin-bottom:14px">Existing Events</h3>
+            <div id="evAdminList"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<dialog id="dlg"><div class="tabs"><button class="out" id="tLogin" style="color:var(--ink)">Log in</button><button class="out" id="tSign" style="color:var(--ink)">Sign up</button></div>
+ <div id="nameRow"><label>Full name<input id="aName"></label></div><label>Email<input id="aEmail" type="email"></label><label>Password<input id="aPass" type="password"></label>
+ <p><button id="aGo">Continue</button> <button class="out" id="aX" style="color:var(--ink)">Cancel</button></p><div class="msg" id="aMsg"></div></dialog>
+<footer>© CVLIS Central · Camp Vicente Lim Integrated School, Calamba · Demo version</footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/poll.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/request.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
