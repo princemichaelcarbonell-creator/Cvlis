@@ -206,7 +206,8 @@ app.delete("/api/events/:id", requireAdmin, wrap(async (req, res) => {
 }));
 
 /* ---------- Static website ---------- */
-const PUBLIC = path.join(__dirname, "public");
+// server.js lives in js/, but the site files (Home.html, css/, js/) are in the parent folder.
+const PUBLIC = path.join(__dirname, "..");
 app.use(express.static(PUBLIC));
 app.get("/", (req, res) => res.sendFile(path.join(PUBLIC, "Home.html")));
 
