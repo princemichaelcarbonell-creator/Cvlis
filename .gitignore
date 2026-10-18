@@ -1,5 +1,2 @@
-.vscode/
-.DS_Store
-node_modules/
 .env
-*.local
+node_modules/

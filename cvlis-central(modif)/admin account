@@ -1,3 +1,0 @@
-REMOVED: admin credentials redacted for security.
-
-This file previously contained an admin account and plaintext password. Storing credentials in repository files is insecure. The admin credentials were removed on 2026-10-18. If you need to recreate an admin user, add the user directly into the production database and rotate passwords. Do NOT store passwords or sensitive connection details in the repository.
